@@ -1,8 +1,11 @@
 import {React, useState} from 'react'
+import { isCompositeComponentWithType } from 'react-dom/test-utils';
 import "./board.css"
+import {v4 as uuid} from "uuid"
 
 function Board() {
-    const [game,setGame] = useState([
+    
+    let [game,setGame] = useState([
         [0,0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0,0,0],
@@ -14,25 +17,28 @@ function Board() {
         [0,0,0,0,0,0,0,0,0]
 
     ])
-    
+    const handleChange = (row, column, event) => {
+        let copy = [...game];
+        copy[row][column] = parseInt(event.target.value);
+        return copy;
+    }
+
+
     return (
-        <div className="game-container">
-        <div className="grid-container">
+        <div key={uuid()} className="game-container">
+        <div key={uuid()} className="grid-container">
             {game.map((row, yindex) => {
                 return(
-                <>
-                <div className="grid-row">
-                {row.map((col) => {
+                <div key={uuid()} className="grid-row">
+                {row.map((col, xindex) => {
                    return( 
-                   <>
-                   <div className="grid-cell">
-                    <input type="text" maxlength="1" name='cell-input[{{ i+j*9 }}]' className="def-txt-input" value={col}></input>
+                   <div key={uuid()} className="grid-cell">
+                    <input key={uuid()} type="text" maxLength="1" value={col} onClick={e => e.target.value = ''} onChange={e => setGame([...game] = handleChange(yindex,xindex,e))}></input>
                     </div>
-                    </>
                     )  
                 })}
                </div>
-               </>
+               
                 )
             })}
             
