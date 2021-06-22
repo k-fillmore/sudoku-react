@@ -3,7 +3,7 @@ import "./Navbar.css"
 
 function navbar() {
     return (
-        <div className="title">
+        <div className="navbar title">
             Sudoku
         </div>
     )
