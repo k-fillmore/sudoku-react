@@ -84,3 +84,9 @@
     margin             : 0;
     -webkit-appearance : none;
   }
+  .actionButtons{
+    padding: 20px;
+  }
+  .actionButtons button{
+    margin: 2px;
+  }
