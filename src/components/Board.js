@@ -22,9 +22,11 @@ function Board() {
   useEffect(() => {
     setOriginalGame(puzzles(puzzleId));
     setGame(puzzles(puzzleId));
+    setSolvedBoard(solver(puzzles(puzzleId)))
   }, [puzzleId]);
 
   const handleChange = (row, column, event) => {
+    if(event.target.value == " "){event.target.value = 0}
     let copy = [...game];
     copy[row][column] = parseInt(event.target.value);
     return copy;
@@ -40,11 +42,13 @@ function Board() {
     setGame(clone(originalGame));
   }
   function input(y, x, col) {
-    console.log(originalGame[y][x]);
+    if(game[y][x]==0){col=""}
     if (originalGame[y][x] == 0) {
+      
       return (
         <input
           key={uuid()}
+          className="readWriteInput"
           type="text"
           maxLength="1"
           value={col}
@@ -56,6 +60,7 @@ function Board() {
       return (
         <input
           key={uuid()}
+          className="readOnly"
           readOnly={true}
           type="text"
           maxLength="1"
