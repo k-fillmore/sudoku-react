@@ -110,15 +110,11 @@ function Board() {
             </div>
           );
         })}
-        {console.log(originalGame)}
-        {console.log(resetBoard)}
-        {console.log(game)}
-        {console.log(solvedBoard)}
         <div className="actionButtons">
           <Button onClick={() => console.log(compareBoards(game, solvedBoard))}>
             Check
           </Button>
-          <Button onClick={() => console.log(compareBoards(game, solvedBoard))}>
+          <Button onClick={() => setGame(clone(solvedBoard))}>
             Solution
           </Button>
           <Button>New Puzzle</Button>
