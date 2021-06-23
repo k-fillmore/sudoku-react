@@ -59,7 +59,7 @@ function Board() {
         <input
           key={uuid()}
           className={isCorrectBorder(x,y,col)}
-          type="text"
+          type="number"
           maxLength="1"
           value={col}
           onClick={(e) => (e.target.value = "")}
@@ -72,7 +72,7 @@ function Board() {
           key={uuid()}
           className="readOnly"
           readOnly={true}
-          type="text"
+          type="number"
           maxLength="1"
           value={col}
         ></input>
