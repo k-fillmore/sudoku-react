@@ -76,7 +76,6 @@
     border           : 0;
     outline          : none;
   
-    font-weight:      bold;
     -moz-appearance  : textfield;
   }
   
@@ -89,4 +88,11 @@
   }
   .actionButtons button{
     margin: 2px;
+  }
+  .readOnly{
+    font-weight : bold;
+  }
+  .readWriteInput{
+    font-weight: 300;
+
   }
