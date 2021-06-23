@@ -41,6 +41,34 @@ function Board() {
   function clearBoard() {
     setGame(clone(originalGame));
   }
+  function input(y,x,col){
+    console.log(originalGame[y][x])
+    if (originalGame[y][x] == 0){
+      return(
+        <input
+                      key={uuid()}
+                      type="text"
+                      maxLength="1"
+                      value={col}
+                      onClick={(e) => (e.target.value = "")}
+                      onChange={(e) =>
+                        setGame(([...game] = handleChange(y, x, e)))
+                      }
+                    ></input>
+      )
+    }else if (originalGame[y][x] > 0){
+      return(
+        <input
+                      key={uuid()}
+                      readOnly={true}
+                      type="text"
+                      maxLength="1"
+                      value={col}
+                      
+                    ></input>
+      )
+    } 
+  }
 
   return (
     <div key={uuid()} className="game-container">
@@ -51,16 +79,8 @@ function Board() {
               {row.map((col, xindex) => {
                 return (
                   <div key={uuid()} className="grid-cell">
-                    <input
-                      key={uuid()}
-                      type="text"
-                      maxLength="1"
-                      value={col}
-                      onClick={(e) => (e.target.value = "")}
-                      onChange={(e) =>
-                        setGame(([...game] = handleChange(yindex, xindex, e)))
-                      }
-                    ></input>
+                    {input(yindex,xindex,col)}
+                    
                   </div>
                 );
               })}
