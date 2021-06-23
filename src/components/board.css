@@ -67,7 +67,7 @@
   input[type=text], input[type=number] {
     height           : 48px;
     width            : 48px;
-
+    cursor            :default;
     font-family: sans-serif;
     background-color : transparent;
     font-size        : 30px;
