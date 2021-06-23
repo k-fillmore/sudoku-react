@@ -23,9 +23,6 @@ function Board() {
     return clone
   }
   let [game, setGame] = useState(clone(originalGame));
-
-  const [resetBoard, setResetBoard] = useState(clone(originalGame));
-  let [unsolvedBoard, setUnsolvedBoard] = useState(clone(originalGame));
   let [solvedBoard, setSolvedBoard] = useState(solve(clone(originalGame)));
 
   const handleChange = (row, column, event) => {
@@ -82,7 +79,7 @@ function Board() {
   }
 
   function clearBoard() {
-    setGame(clone(resetBoard));
+    setGame(clone(originalGame));
   }
 
   return (
