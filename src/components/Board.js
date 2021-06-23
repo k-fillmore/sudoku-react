@@ -26,7 +26,7 @@ function Board() {
   }, [puzzleId]);
 
   const handleChange = (row, column, event) => {
-    if(event.target.value == " "){event.target.value = 0}
+    if(event.target.value === " "){event.target.value = 0}
     let copy = [...game];
     copy[row][column] = parseInt(event.target.value);
     return copy;
@@ -38,17 +38,27 @@ function Board() {
     } else return false;
   }
 
+  function isCorrectBorder(x,y,col){
+    if (solvedBoard[y][x] === col){
+      return("valid-border readWrite")
+    } else if(solvedBoard[y][x] !== col & col !== ""){
+      return("invalid-border readWrite")
+    } else{
+      return("readWrite")
+    }
+  }
+
   function clearBoard() {
     setGame(clone(originalGame));
   }
   function input(y, x, col) {
-    if(game[y][x]==0){col=""}
-    if (originalGame[y][x] == 0) {
-      
+    if(game[y][x]===0){col=""}
+    if (originalGame[y][x] === 0) {
+      {console.log(isCorrectBorder(x,y,col))}
       return (
         <input
           key={uuid()}
-          className="readWriteInput"
+          className={isCorrectBorder(x,y,col)}
           type="text"
           maxLength="1"
           value={col}
@@ -87,9 +97,7 @@ function Board() {
           );
         })}
         <div className="actionButtons">
-          <Button onClick={() => console.log(compareBoards(game, solvedBoard))}>
-            Check
-          </Button>
+          
           <Button onClick={() => setGame(clone(solvedBoard))}>Solution</Button>
           <Button
             onClick={() => {
@@ -104,5 +112,7 @@ function Board() {
     </div>
   );
 }
-
+/* <Button onClick={() => console.log(compareBoards(game, solvedBoard))}>
+            Check
+          </Button>*/
 export default Board;

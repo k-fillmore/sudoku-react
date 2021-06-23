@@ -50,7 +50,7 @@
     height        : 48px;
     width         : 48px;
     margin-right  : 4px;
-    padding       : 0;
+    padding       : 0px;
   
     background    : rgba(238, 228, 218, 0.35);
     border-radius : 3px;
@@ -61,17 +61,17 @@
   }
   
   .grid-cell:last-child {
-    margin-right : 0;
+    margin-right : 0px;
   }
   
   input[type=text], input[type=number] {
     height           : 48px;
     width            : 48px;
-    padding          : 0;
-  
+
+    font-family: sans-serif;
     background-color : transparent;
     font-size        : 30px;
-    color            : white;
+  
     text-align       : center;
     border           : 0;
     outline          : none;
@@ -90,9 +90,21 @@
     margin: 2px;
   }
   .readOnly{
-    font-weight : bold;
+    font-size:35px;
+    font-weight: 800;
+    color:white;
+   
   }
-  .readWriteInput{
+  .readWrite{
+    font-size: 30px;
     font-weight: 300;
+    color:white;
 
+  }
+  .invalid-border{
+    color: rgba(255, 136, 0, 0.877);
+  }
+  
+  .valid-border{
+    color:rgb(67, 238, 67);
   }
