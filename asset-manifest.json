@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/sudoku-react/static/css/main.e7818514.chunk.css",
+    "main.css": "/sudoku-react/static/css/main.c86e0a7d.chunk.css",
     "main.js": "/sudoku-react/static/js/main.84586a6a.chunk.js",
     "main.js.map": "/sudoku-react/static/js/main.84586a6a.chunk.js.map",
     "runtime-main.js": "/sudoku-react/static/js/runtime-main.f91e292e.js",
@@ -10,14 +10,14 @@
     "static/js/3.903f911b.chunk.js": "/sudoku-react/static/js/3.903f911b.chunk.js",
     "static/js/3.903f911b.chunk.js.map": "/sudoku-react/static/js/3.903f911b.chunk.js.map",
     "index.html": "/sudoku-react/index.html",
-    "static/css/main.e7818514.chunk.css.map": "/sudoku-react/static/css/main.e7818514.chunk.css.map",
+    "static/css/main.c86e0a7d.chunk.css.map": "/sudoku-react/static/css/main.c86e0a7d.chunk.css.map",
     "static/js/2.fadcf18b.chunk.js.LICENSE.txt": "/sudoku-react/static/js/2.fadcf18b.chunk.js.LICENSE.txt",
     "static/media/logo.6ce24c58.svg": "/sudoku-react/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.f91e292e.js",
     "static/js/2.fadcf18b.chunk.js",
-    "static/css/main.e7818514.chunk.css",
+    "static/css/main.c86e0a7d.chunk.css",
     "static/js/main.84586a6a.chunk.js"
   ]
 }
