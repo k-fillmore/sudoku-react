@@ -4,10 +4,10 @@ import "./board.css";
 import { v4 as uuid } from "uuid";
 import { Button } from "react-bootstrap";
 import { puzzles } from "./puzzles.js";
-import {solver} from "./solver.js"
+import { solver } from "./solver.js";
 
 function Board() {
-    const randomId = Math.floor(Math.random() * 90)
+  const randomId = Math.floor(Math.random() * 90);
   const [puzzleId, setPuzzleId] = useState(randomId);
   const [originalGame, setOriginalGame] = useState(puzzles(puzzleId));
   function clone(array) {
@@ -20,10 +20,9 @@ function Board() {
   let [solvedBoard, setSolvedBoard] = useState(solver(clone(originalGame)));
 
   useEffect(() => {
-    setOriginalGame(puzzles(puzzleId))
-    setGame(puzzles(puzzleId))
+    setOriginalGame(puzzles(puzzleId));
+    setGame(puzzles(puzzleId));
   }, [puzzleId]);
-
 
   const handleChange = (row, column, event) => {
     let copy = [...game];
@@ -31,7 +30,6 @@ function Board() {
     return copy;
   };
 
-  
   function compareBoards(board, solvedBoard) {
     if (JSON.stringify(board) === JSON.stringify(solvedBoard)) {
       return true;
@@ -41,33 +39,30 @@ function Board() {
   function clearBoard() {
     setGame(clone(originalGame));
   }
-  function input(y,x,col){
-    console.log(originalGame[y][x])
-    if (originalGame[y][x] == 0){
-      return(
+  function input(y, x, col) {
+    console.log(originalGame[y][x]);
+    if (originalGame[y][x] == 0) {
+      return (
         <input
-                      key={uuid()}
-                      type="text"
-                      maxLength="1"
-                      value={col}
-                      onClick={(e) => (e.target.value = "")}
-                      onChange={(e) =>
-                        setGame(([...game] = handleChange(y, x, e)))
-                      }
-                    ></input>
-      )
-    }else if (originalGame[y][x] > 0){
-      return(
+          key={uuid()}
+          type="text"
+          maxLength="1"
+          value={col}
+          onClick={(e) => (e.target.value = "")}
+          onChange={(e) => setGame(([...game] = handleChange(y, x, e)))}
+        ></input>
+      );
+    } else if (originalGame[y][x] > 0) {
+      return (
         <input
-                      key={uuid()}
-                      readOnly={true}
-                      type="text"
-                      maxLength="1"
-                      value={col}
-                      
-                    ></input>
-      )
-    } 
+          key={uuid()}
+          readOnly={true}
+          type="text"
+          maxLength="1"
+          value={col}
+        ></input>
+      );
+    }
   }
 
   return (
@@ -79,8 +74,7 @@ function Board() {
               {row.map((col, xindex) => {
                 return (
                   <div key={uuid()} className="grid-cell">
-                    {input(yindex,xindex,col)}
-                    
+                    {input(yindex, xindex, col)}
                   </div>
                 );
               })}
