@@ -111,7 +111,7 @@ export function puzzles(num) {
       const myChunk = myArray.slice(index, index + chunk_size);
       tempArray.push(myChunk);
     }
-    console.log(tempArray);
+
     return tempArray;
   }
 
