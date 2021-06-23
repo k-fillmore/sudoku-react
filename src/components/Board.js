@@ -1,77 +1,37 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { isCompositeComponentWithType } from "react-dom/test-utils";
 import "./board.css";
 import { v4 as uuid } from "uuid";
 import { Button } from "react-bootstrap";
+import { puzzles } from "./puzzles.js";
+import {solver} from "./solver.js"
 
 function Board() {
-  const [originalGame, setOriginalGame] = useState([
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ]);
+    const randomId = Math.floor(Math.random() * 90)
+  const [puzzleId, setPuzzleId] = useState(randomId);
+  const [originalGame, setOriginalGame] = useState(puzzles(puzzleId));
   function clone(array) {
     let clone = array.map(function (arr) {
       return arr.slice();
     });
-    return clone
+    return clone;
   }
   let [game, setGame] = useState(clone(originalGame));
-  let [solvedBoard, setSolvedBoard] = useState(solve(clone(originalGame)));
+  let [solvedBoard, setSolvedBoard] = useState(solver(clone(originalGame)));
+
+  useEffect(() => {
+    setOriginalGame(puzzles(puzzleId))
+    setGame(puzzles(puzzleId))
+  }, [puzzleId]);
+
 
   const handleChange = (row, column, event) => {
     let copy = [...game];
     copy[row][column] = parseInt(event.target.value);
     return copy;
   };
-  function possible(board, y, x, n) {
-    for (let i = 0; i < 9; i++) {
-      if (board[y][i] === n || board[i][x] === n) {
-        return false;
-      }
-    }
 
-    const xSquare = Math.floor(x / 3) * 3;
-    const ySquare = Math.floor(y / 3) * 3;
-
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
-        if (board[ySquare + i][xSquare + j] === n) {
-          return false;
-        }
-      }
-    }
-
-    return true;
-  }
-
-  function solve(board) {
-    for (let y = 0; y < 9; y++) {
-      for (let x = 0; x < 9; x++) {
-        if (board[y][x] === 0) {
-          for (let n = 1; n <= 9; n++) {
-            if (possible(board, y, x, n)) {
-              board[y][x] = n;
-
-              if (solve(board)) return board;
-            }
-          }
-
-          board[y][x] = 0;
-          return false;
-        }
-      }
-    }
-
-    return board;
-  }
-
+  
   function compareBoards(board, solvedBoard) {
     if (JSON.stringify(board) === JSON.stringify(solvedBoard)) {
       return true;
@@ -111,10 +71,14 @@ function Board() {
           <Button onClick={() => console.log(compareBoards(game, solvedBoard))}>
             Check
           </Button>
-          <Button onClick={() => setGame(clone(solvedBoard))}>
-            Solution
+          <Button onClick={() => setGame(clone(solvedBoard))}>Solution</Button>
+          <Button
+            onClick={() => {
+              setPuzzleId(randomId);
+            }}
+          >
+            New Puzzle
           </Button>
-          <Button>New Puzzle</Button>
           <Button onClick={() => clearBoard()}>Reset</Button>
         </div>
       </div>
